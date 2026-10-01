@@ -24,4 +24,12 @@ shape = SubResource("CircleShape2D_rc1qm")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1070616035]
 
+[node name="Line2D2" type="Line2D" parent="." unique_id=1839118322]
+points = PackedVector2Array(0, -8, 0, 8)
+width = 5.0
+default_color = Color(1, 0, 0, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
