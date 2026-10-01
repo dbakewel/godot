@@ -10,7 +10,6 @@ func _ready():
 	screen_size = get_viewport_rect().size
 	hide()
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var velocity = Vector2.ZERO # The player's movement vector.
@@ -58,6 +57,7 @@ func _on_body_entered(_body):
 			hit.emit()
 			# Must be deferred as we can't change physics properties on a physics callback.
 			$CollisionShape2D.set_deferred("disabled", true)
+			$DeathSound.play()
 	elif _body.is_in_group("power_ups"):
 		if not $Shield100.visible:
 			shieldsUp()
@@ -72,6 +72,9 @@ func shieldsUp():
 
 func start(pos):
 	position = pos
+	$Shield100.hide()
+	$Shield50.hide()
+	$RedAlert.play() # will call shieldsUp() when finished.
 	show()
-	shieldsUp()
 	$CollisionShape2D.disabled = false
+	

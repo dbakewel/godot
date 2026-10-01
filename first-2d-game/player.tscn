@@ -8,6 +8,8 @@
 [ext_resource type="AudioStream" uid="uid://dnbaah1wsixss" path="res://art/shields50.wav" id="6_2hs0m"]
 [ext_resource type="AudioStream" uid="uid://bhounv8i3d5o8" path="res://art/shieldsdown.wav" id="7_1jxqw"]
 [ext_resource type="AudioStream" uid="uid://ww6yvvxp4twg" path="res://art/shieldsbackup.wav" id="8_dw050"]
+[ext_resource type="AudioStream" uid="uid://c38pxidyxxlox" path="res://art/gameover.wav" id="9_n7ghd"]
+[ext_resource type="AudioStream" uid="uid://b6wirlim64oma" path="res://art/redalert.wav" id="10_nvl01"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rc1qm"]
 animations = [{
@@ -75,4 +77,11 @@ stream = ExtResource("7_1jxqw")
 [node name="ShieldsBackUp" type="AudioStreamPlayer" parent="." unique_id=1002764197]
 stream = ExtResource("8_dw050")
 
+[node name="DeathSound" type="AudioStreamPlayer" parent="." unique_id=314304400]
+stream = ExtResource("9_n7ghd")
+
+[node name="RedAlert" type="AudioStreamPlayer" parent="." unique_id=26159052]
+stream = ExtResource("10_nvl01")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="RedAlert" to="." method="shieldsUp"]

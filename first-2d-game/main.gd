@@ -15,14 +15,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
 func game_over():
 	$ScoreTimer.stop()
 	$MobTimer.stop()
 	$PowerUpTimer.stop()
 	$HUD.show_game_over()
 	$Music.stop()
-	$DeathSound.play()
 
 func new_game():
 	# remove any mobs left over the previous game.
@@ -34,8 +32,6 @@ func new_game():
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
 	$Music.play()
-	$RedAlert.play()
-
 
 func _on_mob_timer_timeout():
 	# Create a new instance of the Mob scene.
