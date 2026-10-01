@@ -1,6 +1,8 @@
 extends Node
 
 @export var mob_scene: PackedScene
+@export var pu_scene: PackedScene
+
 var score
 
 
@@ -17,6 +19,7 @@ func _process(delta: float) -> void:
 func game_over():
 	$ScoreTimer.stop()
 	$MobTimer.stop()
+	$PowerUpTimer.stop()
 	$HUD.show_game_over()
 	$Music.stop()
 	$DeathSound.play()
@@ -59,6 +62,27 @@ func _on_mob_timer_timeout():
 	# Spawn the mob by adding it to the Main scene.
 	add_child(mob)
 
+func _on_power_up_timer_timeout() -> void:
+	var pu = pu_scene.instantiate()
+	
+	# Choose a random location on Path2D.
+	var pu_spawn_location = $MobPath/MobSpawnLocation
+	pu_spawn_location.progress_ratio = randf()
+
+	# Set the pu's position to the random location.
+	pu.position = pu_spawn_location.position
+	# Set the pu's direction perpendicular to the path direction.
+	var direction = pu_spawn_location.rotation + PI / 2
+
+	# Add some randomness to the direction.
+	direction += randf_range(-PI / 4, PI / 4)
+	pu.rotation = direction
+
+	# Choose the velocity for the mob.
+	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
+	pu.linear_velocity = velocity.rotated(direction)
+	
+	add_child(pu)
 
 func _on_score_timer_timeout():
 	score += 1
@@ -66,4 +90,5 @@ func _on_score_timer_timeout():
 
 func _on_start_timer_timeout():
 	$MobTimer.start()
+	$PowerUpTimer.start()
 	$ScoreTimer.start()

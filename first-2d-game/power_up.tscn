@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://c8klp4lcmlym8"]
+
+[ext_resource type="Script" uid="uid://cv0m368nl2iii" path="res://power_up.gd" id="1_lbdsv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rc1qm"]
+
+[node name="PowerUp" type="RigidBody2D" unique_id=393745305 groups=["power_ups"]]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_lbdsv")
+metadata/_edit_group_ = true
+
+[node name="Line2D" type="Line2D" parent="." unique_id=1571449238]
+points = PackedVector2Array(-8, 0, 8, 0)
+width = 5.0
+default_color = Color(1, 0, 0, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1482131027]
+rotation = 1.5707964
+shape = SubResource("CircleShape2D_rc1qm")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1070616035]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

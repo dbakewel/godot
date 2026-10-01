@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bkmpoedxb7w1t" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://dahb3k6tp3m6g" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://gx4d6yjcrq3s" path="res://mob.tscn" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://c8klp4lcmlym8" path="res://power_up.tscn" id="3_5vw27"]
 [ext_resource type="PackedScene" uid="uid://egfo7g5p4jb3" path="res://hud.tscn" id="4_1bvp3"]
 [ext_resource type="AudioStream" uid="uid://cd4rfk1mypp2k" path="res://art/House In a Forest Loop.ogg" id="5_272bh"]
 [ext_resource type="AudioStream" uid="uid://c38pxidyxxlox" path="res://art/gameover.wav" id="5_lquwl"]
@@ -17,6 +18,7 @@ point_count = 5
 [node name="Main" type="Node" unique_id=1697565197]
 script = ExtResource("1_h2yge")
 mob_scene = ExtResource("2_1bvp3")
+pu_scene = ExtResource("3_5vw27")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1104014203]
 anchors_preset = 15
@@ -29,7 +31,9 @@ color = Color(0.39607844, 0.27450982, 1, 1)
 [node name="Player" parent="." unique_id=2058597009 instance=ExtResource("1_ig7tw")]
 
 [node name="MobTimer" type="Timer" parent="." unique_id=792377508]
-wait_time = 0.5
+
+[node name="PowerUpTimer" type="Timer" parent="." unique_id=1366896684]
+wait_time = 3.0
 
 [node name="ScoreTimer" type="Timer" parent="." unique_id=591303594]
 
@@ -59,6 +63,7 @@ stream = ExtResource("6_7mycd")
 
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="timeout" from="PowerUpTimer" to="." method="_on_power_up_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]

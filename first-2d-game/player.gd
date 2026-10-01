@@ -46,20 +46,25 @@ func _on_body_entered(_body):
 	#remove mob
 	_body.queue_free()
 	
-	if $Shield100.visible:
-		$Shield100.hide()
-		$ShieldsAt50.play()
-		return
+	if _body.is_in_group("mobs"):
+		if $Shield100.visible:
+			$Shield100.hide()
+			$ShieldsAt50.play()
+		elif $Shield50.visible:
+			$Shield50.hide()
+			$ShieldsDown.play()
+		else:
+			hide() # Player disappears after being hit.
+			hit.emit()
+			# Must be deferred as we can't change physics properties on a physics callback.
+			$CollisionShape2D.set_deferred("disabled", true)
+	elif _body.is_in_group("power_ups"):
+		if not $Shield100.visible:
+			shieldsUp()
+			$ShieldsBackUp.play()
+	else:
+		print("Entered unknown object.")
 		
-	if $Shield50.visible:
-		$Shield50.hide()
-		$ShieldsDown.play()
-		return
-		
-	hide() # Player disappears after being hit.
-	hit.emit()
-	# Must be deferred as we can't change physics properties on a physics callback.
-	$CollisionShape2D.set_deferred("disabled", true)
 
 func shieldsUp():
 	$Shield100.show()
