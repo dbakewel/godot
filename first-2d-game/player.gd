@@ -48,10 +48,12 @@ func _on_body_entered(_body):
 	
 	if $Shield100.visible:
 		$Shield100.hide()
+		$ShieldsAt50.play()
 		return
 		
 	if $Shield50.visible:
 		$Shield50.hide()
+		$ShieldsDown.play()
 		return
 		
 	hide() # Player disappears after being hit.
