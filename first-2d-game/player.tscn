@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dp672d3k2cybu" path="res://art/playerGrey_up1.png" id="1_hqtel"]
 [ext_resource type="Script" uid="uid://bx1vum5sgjvq6" path="res://player.gd" id="1_sweqy"]
+[ext_resource type="PackedScene" uid="uid://bjiefdvineai8" path="res://explosion.tscn" id="2_nvl01"]
 [ext_resource type="Texture2D" uid="uid://cnj6jfgxqx8s3" path="res://art/playerGrey_up2.png" id="2_sweqy"]
 [ext_resource type="Texture2D" uid="uid://b3t8pg634qg0n" path="res://art/playerGrey_walk1.png" id="3_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://bv8kiobsuxns" path="res://art/playerGrey_walk2.png" id="4_1jxqw"]
@@ -42,6 +43,7 @@ height = 70.0
 
 [node name="Player" type="Area2D" unique_id=2058597009]
 script = ExtResource("1_sweqy")
+explosion_scene = ExtResource("2_nvl01")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=703681652]

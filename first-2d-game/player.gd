@@ -2,6 +2,7 @@ extends Area2D
 
 signal hit
 
+@export var explosion_scene: PackedScene
 @export var speed = 400 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window.
 
@@ -42,30 +43,34 @@ func _process(delta):
 
 
 func _on_body_entered(_body):
-	#remove mob
-	_body.queue_free()
-	
 	if _body.is_in_group("mobs"):
+		var ex = explosion_scene.instantiate()
 		if $Shield100.visible:
+			_body.queue_free()
 			$Shield100.hide()
 			$ShieldsAt50.play()
+			ex.position = _body.position
 		elif $Shield50.visible:
+			_body.queue_free()
 			$Shield50.hide()
 			$ShieldsDown.play()
+			ex.position = _body.position
 		else:
 			hide() # Player disappears after being hit.
 			hit.emit()
 			# Must be deferred as we can't change physics properties on a physics callback.
 			$CollisionShape2D.set_deferred("disabled", true)
 			$DeathSound.play()
+			ex.position = position
+		get_tree().root.add_child(ex)
 	elif _body.is_in_group("power_ups"):
+		_body.queue_free()
 		if not $Shield100.visible:
 			shieldsUp()
 			$ShieldsBackUp.play()
 	else:
 		print("Entered unknown object.")
 		
-
 func shieldsUp():
 	$Shield100.show()
 	$Shield50.show()

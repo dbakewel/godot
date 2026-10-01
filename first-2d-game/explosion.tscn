@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bjiefdvineai8"]
+
+[ext_resource type="Script" uid="uid://bt3rnx17kcdda" path="res://explosion.gd" id="1_q7epf"]
+
+[sub_resource type="Gradient" id="Gradient_q7epf"]
+colors = PackedColorArray(1, 1, 1, 1, 0.7841172, 2.2862107e-06, 9.62615e-07, 1)
+
+[node name="Explosion" type="CPUParticles2D" unique_id=2145255954]
+top_level = true
+emitting = false
+amount = 30
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.95
+emission_shape = 1
+emission_sphere_radius = 4.16
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 99.21
+scale_amount_min = 3.0
+scale_amount_max = 7.0
+color = Color(1, 0.90588236, 0.2509804, 1)
+color_ramp = SubResource("Gradient_q7epf")
+script = ExtResource("1_q7epf")
+
+[connection signal="finished" from="." to="." method="_on_finished"]
