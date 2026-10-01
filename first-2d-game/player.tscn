@@ -57,7 +57,7 @@ shape = SubResource("CapsuleShape2D_rc1qm")
 [node name="Shield100" type="Line2D" parent="." unique_id=163664955]
 points = PackedVector2Array(0, -3, 0, 3)
 width = 64.0
-default_color = Color(0, 1, 0, 0.28235295)
+default_color = Color(0, 1, 0, 0.23921569)
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
@@ -65,7 +65,7 @@ end_cap_mode = 2
 [node name="Shield50" type="Line2D" parent="." unique_id=1232149119]
 points = PackedVector2Array(0, -3, 0, 3)
 width = 64.0
-default_color = Color(0, 1, 0, 0.28235295)
+default_color = Color(0, 1, 0, 0.20784314)
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
