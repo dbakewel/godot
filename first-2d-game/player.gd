@@ -43,12 +43,28 @@ func _process(delta):
 
 
 func _on_body_entered(_body):
+	#remove mob
+	_body.queue_free()
+	
+	if $Shield100.visible:
+		$Shield100.hide()
+		return
+		
+	if $Shield50.visible:
+		$Shield50.hide()
+		return
+		
 	hide() # Player disappears after being hit.
 	hit.emit()
 	# Must be deferred as we can't change physics properties on a physics callback.
 	$CollisionShape2D.set_deferred("disabled", true)
 
+func shieldsUp():
+	$Shield100.show()
+	$Shield50.show()
+
 func start(pos):
 	position = pos
 	show()
+	shieldsUp()
 	$CollisionShape2D.disabled = false
