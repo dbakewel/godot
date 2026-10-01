@@ -4,6 +4,7 @@ extends Node
 @export var pu_scene: PackedScene
 
 var score
+var mobSpeedBoost = 1.0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -53,6 +54,8 @@ func _on_mob_timer_timeout():
 
 	# Choose the velocity for the mob.
 	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
+	velocity *= mobSpeedBoost
+	print(velocity)
 	mob.linear_velocity = velocity.rotated(direction)
 
 	# Spawn the mob by adding it to the Main scene.
@@ -83,6 +86,16 @@ func _on_power_up_timer_timeout() -> void:
 func _on_score_timer_timeout():
 	score += 1
 	$HUD.update_score(score)
+	# each time score goes up by 5 speed up mod timer or mob speed
+	if score != 0 and score % 5 == 0:
+		# new wait time may be <= 0  so use a tmp (timers ignore being set to <=0)
+		var newWait = $MobTimer.wait_time - 0.5
+		# if mobs are already being relased fast enough then speed them up
+		if newWait < 0.5:
+			newWait = 0.5
+			mobSpeedBoost += 0.1
+		$MobTimer.wait_time = newWait
+			
 
 func _on_start_timer_timeout():
 	$MobTimer.start()

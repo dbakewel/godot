@@ -29,6 +29,7 @@ color = Color(0.39607844, 0.27450982, 1, 1)
 [node name="Player" parent="." unique_id=2058597009 instance=ExtResource("1_ig7tw")]
 
 [node name="MobTimer" type="Timer" parent="." unique_id=792377508]
+wait_time = 2.0
 
 [node name="PowerUpTimer" type="Timer" parent="." unique_id=1366896684]
 wait_time = 3.0
