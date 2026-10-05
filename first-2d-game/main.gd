@@ -14,7 +14,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	$HUD/TimersLabel.text = "Timers\nStart: " + timeToText($StartTimer) \
+		+ "\nMob: " + timeToText($MobTimer) \
+		+ "\nScore: " + timeToText($ScoreTimer) \
+		+ "\nMessage: " + timeToText($HUD/MessageTimer) \
+		+ "\nPower Up: " + timeToText($PowerUpTimer) 
 
 func game_over():
 	$ScoreTimer.stop()
@@ -101,3 +105,12 @@ func _on_start_timer_timeout():
 	$MobTimer.start()
 	$PowerUpTimer.start()
 	$ScoreTimer.start()
+	
+func timeToText(timer: Timer) -> String: 
+	if timer.is_stopped() :
+		return "Stopped"
+	#var value = timer.time_left / timer.wait_time
+	#var count = roundi(clamp(value, 0.0, 1.0) * 30.0) + 1
+	#return "|".repeat(count)
+	return "|".repeat(roundi(timer.time_left*10))
+	

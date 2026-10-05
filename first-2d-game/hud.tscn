@@ -66,5 +66,17 @@ metadata/_edit_use_anchors_ = true
 wait_time = 2.0
 one_shot = true
 
+[node name="TimersLabel" type="Label" parent="." unique_id=1762978104]
+offset_left = 13.0
+offset_top = 566.0
+offset_right = 147.0
+offset_bottom = 719.0
+text = "Timers
+Start: 0
+Mob: 0
+Score: 0
+Message: 0
+Power Up: 0"
+
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
